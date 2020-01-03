@@ -2,20 +2,22 @@ import React from "react";
 import {Form, Icon, Input, Button, Checkbox, message} from 'antd';
 import Logo from '../../../assets/enigmacamp.jpeg';
 import {Link} from "react-router-dom";
-import {doLogin} from "../../../services/authenticationService";
-
-function hasErrors(fieldsError) {
-    return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
+import {doLogin, getJsonToken, getPathRedirect, isAuthenticated} from "../../../services/authenticationService";
+import {CREDENTIAL, hasErrors} from "../../../util/Constants";
+import {withRouter} from "react-router-dom";
+import {getUserById} from "../../../services/userService";
 
 class LoginForm extends React.Component {
     componentDidMount() {
+        if (isAuthenticated()) {
+            return this.props.history.push(getPathRedirect());
+        }
         // To disable submit button at the beginning.
         this.props.form.validateFields();
     }
 
     render() {
-        const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+        const {getFieldDecorator, getFieldsError, getFieldError, isFieldTouched} = this.props.form;
 
         // Only show error after a field is touched.
         const usernameError = isFieldTouched('username') && getFieldError('username');
@@ -28,10 +30,10 @@ class LoginForm extends React.Component {
                 <Form layout="horizontal" onSubmit={this.handleSubmit}>
                     <Form.Item validateStatus={usernameError ? 'error' : ''} help={usernameError || ''}>
                         {getFieldDecorator('username', {
-                            rules: [{ required: true, message: 'Please input your username!' }],
+                            rules: [{required: true, message: 'Please input your username!'}],
                         })(
                             <Input
-                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                 name="username"
                                 placeholder="Username"
                             />,
@@ -39,10 +41,10 @@ class LoginForm extends React.Component {
                     </Form.Item>
                     <Form.Item validateStatus={passwordError ? 'error' : ''} help={passwordError || ''}>
                         {getFieldDecorator('password', {
-                            rules: [{ required: true, message: 'Please input your Password!' }],
+                            rules: [{required: true, message: 'Please input your Password!'}],
                         })(
                             <Input
-                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                 name="password"
                                 type="password"
                                 placeholder="Password"
@@ -69,7 +71,7 @@ class LoginForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.form.validateFields( async (err, values) => {
+        this.props.form.validateFields(async (err, values) => {
             if (!err) {
                 const loginForm = {
                     username: values['username'],
@@ -77,11 +79,16 @@ class LoginForm extends React.Component {
                 };
                 const response = await doLogin(loginForm);
                 if (response.type === 'error') return message.warning(response.message);
+                localStorage.setItem(CREDENTIAL, response.token);
+                console.log(await getUserById(getJsonToken().jti));
+                return (
+                    this.props.history.push(getPathRedirect())
+                )
             }
         });
     };
 }
 
-const Login = Form.create({ name: 'login' })(LoginForm);
+const Login = Form.create({name: 'login'})(LoginForm);
 
-export default Login;
+export default withRouter(Login);

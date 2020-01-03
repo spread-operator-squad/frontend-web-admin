@@ -1,18 +1,27 @@
 import React from 'react';
-import {Layout} from 'antd';
+import {Layout, message} from 'antd';
 import TopBar from "../components/Layout/TopBar/TopBar";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
+    withRouter
 } from "react-router-dom";
 import Bread from "../components/Layout/Breadcumb/Bread";
 import Dashboard from "./Dashboard";
 import Navigation from "../components/Navigation/Navigation";
+import {getJsonToken, getPathRedirect, isAuthenticated} from "../services/authenticationService";
 
 const {Content, Footer, Sider} = Layout;
 
 class App extends React.Component {
+    componentDidMount() {
+        if (!isAuthenticated()) {
+            message.warning("Please Login !");
+            return this.props.history.push(getPathRedirect())
+        }
+    }
+
     state = {
         collapsed: false,
     };
@@ -59,4 +68,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default withRouter(App);

@@ -7,30 +7,31 @@
       <change afterPath="$PROJECT_DIR$/src/assets/enigmacamp.jpeg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/assets/main.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/Layout/Breadcumb/Bread.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Layout/TopBar/TopBar.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/Navigation/Navigation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/App.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/pages/Auth/ForgotPassword/ForgotPassword.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Auth/Login/Login.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/pages/Auth/Registration/Registration.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/pages/Dashboard/components/InfoCard/InfoCard.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/pages/Dashboard/components/index.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/pages/Dashboard/index.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/pages/utils/constants.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/CombineReducers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/StoreDetail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/UserDetail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/authenticationService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/UserDetailReducer.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/util/Action.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/Constants.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/util/Exception.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/TopBar/TopBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/TopBar/TopBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Auth/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Auth/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/StoreDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/userService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/UserDetail.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/authenticationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/authenticationService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +119,7 @@
       <option name="presentableId" value="Default" />
       <updated>1577977138339</updated>
       <workItem from="1577977140225" duration="32783000" />
-      <workItem from="1578042190407" duration="2937000" />
+      <workItem from="1578042190407" duration="9191000" />
     </task>
     <servers />
   </component>

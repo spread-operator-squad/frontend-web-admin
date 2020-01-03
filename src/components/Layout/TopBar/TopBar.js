@@ -1,5 +1,6 @@
 import React from "react";
 import {Menu, Dropdown, Avatar, Icon, Layout, Row, Col} from "antd";
+import {withRouter} from "react-router";
 
 const {Header} = Layout;
 
@@ -17,7 +18,15 @@ const account = (
 );
 
 function handleMenuClick(e) {
-    console.log(e.key)
+    switch (e.key) {
+        case 'logout':
+            localStorage.clear();
+            return this.props.history.push('/login');
+        case 'account-setting' :
+            console.log("account");
+            break;
+        default: return
+    }
 }
 
 class TopBar extends React.Component {
@@ -36,4 +45,4 @@ class TopBar extends React.Component {
     }
 }
 
-export default TopBar;
+export default withRouter(TopBar);
