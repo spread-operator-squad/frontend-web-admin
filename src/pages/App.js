@@ -15,6 +15,7 @@ import UserContainer from "./User/UserContainer";
 import ServiceContainer from './Services/ServiceContainer';
 import ItemContainer from './Item/ItemContainer';
 import OperatorContainer from './Operator/OperatorContainer';
+import ReportContainer from './Report/ReportContainer';
 
 const {Content, Footer, Sider} = Layout;
 
@@ -59,10 +60,10 @@ class App extends React.Component {
 
                                 {/*OWNER PAGE*/}
                                 <Route path={`${path}/store`}> Store </Route>
-                                <Route path={`${path}/operator`}> <OperatorContainer/> </Route>
-                                <Route path={`${path}/service`}> <ServiceContainer/> </Route>
-                                <Route path={`${path}/item`}> <ItemContainer/> </Route>
-                                <Route path={`${path}/report`}> Report </Route>
+                                <Route path={`${path}/operator`} component={OperatorContainer}/>
+                                <Route path={`${path}/service`} component={ServiceContainer}/> 
+                                <Route path={`${path}/item`} component={ItemContainer}/>
+                                <Route path={`${path}/report`} component={ReportContainer}/>
                                 <Route path={`${path}/chat`}> Chat </Route>
                                 <Route path={`${path}/*`}>Not Found</Route>
                             </Switch>

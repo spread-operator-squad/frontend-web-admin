@@ -1,12 +1,29 @@
 import React from 'react'
 import { Table, Divider, Tag, message } from 'antd';
+import { fetchReport } from '../../services/reportService';
+import Page from '../../components/Page/Page';
 
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'username',
-        key: 'username',
+        title: 'Customer Name',
+        dataIndex: 'customerName',
+        key: 'customerName',
         render: text => <a>{text}</a>,
+    },
+    {
+        title: 'Put Date',
+        dataIndex: 'dateStart',
+        key: 'dateStart',
+    },
+    {
+        title: 'Pickup Date',
+        dataIndex: 'dateEnd',
+        key: 'dateEnd',
+    },
+    {
+        title: 'Total',
+        dataIndex: 'total',
+        key: 'total',
     },
     {
         title: 'Action',
@@ -21,25 +38,27 @@ const columns = [
     },
 ];
 
-class ReportContainer extends React.Component{
+class ReportContainer extends React.Component {
     state = {
         data: []
     }
 
-    componentDidMount(){
-        this.fetchAllService();
+    componentDidMount() {
+        this.fetchAllReport();
     }
 
-    render(){
-        return(
-            <Table columns={columns} dataSource={this.state.data} />
+    render() {
+        return (
+            <Page inner>
+                <Table columns={columns} dataSource={this.state.data} />
+            </Page>
         )
     }
 
-    fetchAllReport= async () => {
+    fetchAllReport = async () => {
         const response = await fetchReport();
         if (response.type === 'error') return message.warning(response.message);
-        this.setState({...this.state.data, data: response});
+        this.setState({ ...this.state.data, data: response });
     }
 }
 
