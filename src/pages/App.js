@@ -10,7 +10,7 @@ import {
 import Bread from "../components/Layout/Breadcumb/Bread";
 import Dashboard from "./Dashboard";
 import Navigation from "../components/Navigation/Navigation";
-import {getJsonToken, getPathRedirect, isAuthenticated} from "../services/authenticationService";
+import {getPathRedirect, isAuthenticated} from "../services/authenticationService";
 
 const {Content, Footer, Sider} = Layout;
 
@@ -41,7 +41,7 @@ class App extends React.Component {
                         <Navigation role={role}/>
                     </Sider>
                     <Layout>
-                        <TopBar/>
+                        <TopBar history={this.props.history}/>
                         <Content style={{margin: '0 16px'}}>
                             <Bread url={url} title="Dashboard" icon="dashboard"/>
                             <Switch>
