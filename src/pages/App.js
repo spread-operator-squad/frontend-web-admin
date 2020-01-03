@@ -23,6 +23,7 @@ class App extends React.Component {
             message.warning("Please Login !");
             return this.props.history.push(getPathRedirect())
         }
+        return this.props.history.push(getPathRedirect().concat("dashboard"));
     }
 
     state = {
@@ -36,6 +37,7 @@ class App extends React.Component {
     render() {
         const {path, url} = this.props.match;
         const role = path.substr(1);
+
         return (
             <Router>
                 <Layout style={{minHeight: '100vh'}}>
@@ -44,7 +46,7 @@ class App extends React.Component {
                         <Navigation role={role}/>
                     </Sider>
                     <Layout>
-                        <TopBar/>
+                        <TopBar history={this.props.history}/>
                         <Content style={{margin: '0 16px'}}>
                             <Bread url={url} title="Dashboard" icon="dashboard"/>
                             <Switch>
@@ -52,7 +54,7 @@ class App extends React.Component {
                                 <Route exact path={`${path}/dashboard`}><Dashboard/></Route>
 
                                 {/*ADMIN PAGE*/}
-                                <Route path={`${path}/user`}> Users </Route>
+                                <Route path={`${path}/user`}> <UserContainer/> </Route>
 
                                 {/*OWNER PAGE*/}
                                 <Route path={`${path}/store`}> Store </Route>
@@ -61,6 +63,7 @@ class App extends React.Component {
                                 <Route path={`${path}/item`}> <ItemContainer/> </Route>
                                 <Route path={`${path}/report`}> Report </Route>
                                 <Route path={`${path}/chat`}> Chat </Route>
+                                <Route path={`${path}/*`}>Not Found</Route>
                             </Switch>
                         </Content>
                         <Footer style={{textAlign: 'center'}}>Copyright</Footer>

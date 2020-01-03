@@ -1,5 +1,5 @@
 import {customMessage, handleErrors} from "../util/Exception";
-import {CREDENTIAL} from "../util/Constants";
+import {CREDENTIAL, USER_ROLE} from "../util/Constants";
 
 const jwtDecode = require('jwt-decode');
 
@@ -39,11 +39,11 @@ function getRoleUser() {
 
 export function getPathRedirect() {
     if (isAuthenticated()) {
-        if ('ROLE_ADMINISTRATOR'.includes(getRoleUser())) {
+        if (USER_ROLE.ADMIN.role.includes(getRoleUser())) {
             return '/admin/';
-        } else if ('ROLE_OWNER'.includes(getRoleUser())) {
+        } else if (USER_ROLE.OWNER.role.includes(getRoleUser())) {
             return '/owner/';
-        } else if ('ROLE_OPERATOR'.includes(getRoleUser())) {
+        } else if (USER_ROLE.OPERATOR.role.includes(getRoleUser())) {
             return '/operator/';
         }
     } else {
