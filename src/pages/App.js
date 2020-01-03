@@ -11,6 +11,9 @@ import Bread from "../components/Layout/Breadcumb/Bread";
 import Dashboard from "./Dashboard";
 import Navigation from "../components/Navigation/Navigation";
 import {getJsonToken, getPathRedirect, isAuthenticated} from "../services/authenticationService";
+import ServiceContainer from './Services/ServiceContainer';
+import ItemContainer from './Item/ItemContainer';
+import OperatorContainer from './Operator/OperatorContainer';
 
 const {Content, Footer, Sider} = Layout;
 
@@ -53,9 +56,9 @@ class App extends React.Component {
 
                                 {/*OWNER PAGE*/}
                                 <Route path={`${path}/store`}> Store </Route>
-                                <Route path={`${path}/operator`}> Operator </Route>
-                                <Route path={`${path}/service`}> Service </Route>
-                                <Route path={`${path}/item`}> Item </Route>
+                                <Route path={`${path}/operator`}> <OperatorContainer/> </Route>
+                                <Route path={`${path}/service`}> <ServiceContainer/> </Route>
+                                <Route path={`${path}/item`}> <ItemContainer/> </Route>
                                 <Route path={`${path}/report`}> Report </Route>
                                 <Route path={`${path}/chat`}> Chat </Route>
                             </Switch>
