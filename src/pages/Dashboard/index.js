@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col } from 'antd'
 import {InfoCard} from './components';
 import {Constant} from "../utils/constants";
+import Page from "../../components/Page/Page";
 
 const {Color} = Constant;
 
@@ -41,9 +42,11 @@ class Dashboard extends React.Component {
         ));
 
         return (
-            <Row gutter={24}>
-                {infoCard}
-            </Row>
+            <Page>
+                <Row gutter={24}>
+                    {infoCard}
+                </Row>
+            </Page>
         );
     }
 }

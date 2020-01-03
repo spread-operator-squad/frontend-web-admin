@@ -11,6 +11,7 @@ import Bread from "../components/Layout/Breadcumb/Bread";
 import Dashboard from "./Dashboard";
 import Navigation from "../components/Navigation/Navigation";
 import {getPathRedirect, isAuthenticated} from "../services/authenticationService";
+import UserContainer from "./User/UserContainer";
 
 const {Content, Footer, Sider} = Layout;
 
@@ -20,7 +21,7 @@ class App extends React.Component {
             message.warning("Please Login !");
             return this.props.history.push(getPathRedirect())
         }
-        return this.props.history.push(getPathRedirect());
+        return this.props.history.push(getPathRedirect().concat("dashboard"));
     }
 
     state = {
@@ -48,10 +49,10 @@ class App extends React.Component {
                             <Bread url={url} title="Dashboard" icon="dashboard"/>
                             <Switch>
                                 {/*GLOBAL PAGE*/}
-                                <Route path={`${path}/dashboard`}><Dashboard/></Route>
+                                <Route exact path={`${path}/dashboard`}><Dashboard/></Route>
 
                                 {/*ADMIN PAGE*/}
-                                <Route path={`${path}/user`}> Users </Route>
+                                <Route path={`${path}/user`}> <UserContainer/> </Route>
 
                                 {/*OWNER PAGE*/}
                                 <Route path={`${path}/store`}> Store </Route>
