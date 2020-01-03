@@ -15,8 +15,8 @@ ReactDOM.render(
             <Route exact path={"/login"}><Login/></Route>
             <Route path={"/register"}><Registration/></Route>
             <Route path={"/forgot-password"}><ForgotPassword/></Route>
-            <Route exact path="/admin" component={App}/>
-            <Route exact path="/owner" component={App}/>
+            <Route path="/admin" component={App}/>
+            <Route path="/owner" component={App}/>
         </Switch>
     </Router>
     , document.getElementById('root'));
