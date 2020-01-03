@@ -5,10 +5,7 @@ import {Link} from "react-router-dom";
 import {doLogin, getJsonToken, getPathRedirect, isAuthenticated} from "../../../services/authenticationService";
 import {CREDENTIAL, hasErrors} from "../../../util/Constants";
 import {withRouter} from "react-router-dom";
-import {getUserById} from "../../../services/userService";
 import {connect} from "react-redux";
-import {Constant} from "../../utils/constants";
-import {UserDetailAction} from "../../../util/Action";
 
 class LoginForm extends React.Component {
     componentDidMount() {
@@ -83,7 +80,6 @@ class LoginForm extends React.Component {
                 const response = await doLogin(loginForm);
                 if (response.type === 'error') return message.warning(response.message);
                 localStorage.setItem(CREDENTIAL, response.token);
-                this.props.dispatch({type: UserDetailAction.SAVE_USER_DETAIL, payload: await getUserById(getJsonToken().jti)});
                 return (
                     this.props.history.push(getPathRedirect())
                 )

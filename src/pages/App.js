@@ -10,12 +10,15 @@ import {
 import Bread from "../components/Layout/Breadcumb/Bread";
 import Dashboard from "./Dashboard";
 import Navigation from "../components/Navigation/Navigation";
-import {getPathRedirect, isAuthenticated} from "../services/authenticationService";
+import {getJsonToken, getPathRedirect, isAuthenticated} from "../services/authenticationService";
 import UserContainer from "./User/UserContainer";
 import ServiceContainer from './Services/ServiceContainer';
 import ItemContainer from './Item/ItemContainer';
 import OperatorContainer from './Operator/OperatorContainer';
 import ReportContainer from './Report/ReportContainer';
+import {connect} from "react-redux";
+import {UserDetailAction} from "../util/Action";
+import {getUserById} from "../services/userService";
 
 const {Content, Footer, Sider} = Layout;
 
@@ -25,8 +28,13 @@ class App extends React.Component {
             message.warning("Please Login !");
             return this.props.history.push(getPathRedirect())
         }
+        this.setUserDetail();
         return this.props.history.push(getPathRedirect().concat("dashboard"));
     }
+
+    setUserDetail = async () => {
+        this.props.dispatch({type: UserDetailAction.SAVE_USER_DETAIL, payload: await getUserById(getJsonToken().jti)});
+    };
 
     state = {
         collapsed: false,
@@ -39,7 +47,6 @@ class App extends React.Component {
     render() {
         const {path, url} = this.props.match;
         const role = path.substr(1);
-
         return (
             <Router>
                 <Layout style={{minHeight: '100vh'}}>
@@ -48,7 +55,7 @@ class App extends React.Component {
                         <Navigation role={role}/>
                     </Sider>
                     <Layout>
-                        <TopBar history={this.props.history}/>
+                        <TopBar name={this.props.user.userDetail.name} history={this.props.history}/>
                         <Content style={{margin: '0 16px'}}>
                             <Bread url={url} title="Dashboard" icon="dashboard"/>
                             <Switch>
@@ -61,7 +68,7 @@ class App extends React.Component {
                                 {/*OWNER PAGE*/}
                                 <Route path={`${path}/store`}> Store </Route>
                                 <Route path={`${path}/operator`} component={OperatorContainer}/>
-                                <Route path={`${path}/service`} component={ServiceContainer}/> 
+                                <Route path={`${path}/service`} component={ServiceContainer}/>
                                 <Route path={`${path}/item`} component={ItemContainer}/>
                                 <Route path={`${path}/report`} component={ReportContainer}/>
                                 <Route path={`${path}/chat`}> Chat </Route>
@@ -76,4 +83,8 @@ class App extends React.Component {
     }
 }
 
-export default withRouter(App);
+const mapStateToProps = (state) => ({
+    user: {...state.user}
+});
+
+export default connect(mapStateToProps)(withRouter(App));

@@ -18,7 +18,6 @@ class TopBar extends React.Component {
     );
 
     handleMenuClick = (e) => {
-        console.log(this.props);
         switch (e.key) {
             case 'logout':
             localStorage.clear();
@@ -34,7 +33,7 @@ class TopBar extends React.Component {
             <Header style={{background: '#fff', padding: 0}}>
                     <Dropdown overlay={this.account} className='hover-able' placement={"bottomLeft"}>
                             <div style={{float: 'right', marginRight: '20px'}}>
-                                Hi, Username <Avatar/>
+                                Hi, {this.props.name} <Avatar/>
                             </div>
                     </Dropdown>
             </Header>
