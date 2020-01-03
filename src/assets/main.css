@@ -1,0 +1,105 @@
+.logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+}
+
+.hover-able {
+    cursor: pointer;
+}
+
+.login-form {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin: -160px 0 0 -160px;
+    width: 320px;
+    height: 420px;
+    padding: 36px;
+    box-shadow: 0 0 100px rgba(0,0,0,0.08);
+}
+.login-form button {
+    width: 100%;
+}
+.login-form p {
+    color: #cccccc;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-form-forgot {
+    float: right;
+}
+.login-form-button {
+    width: 100%;
+}
+
+.login-form .logo {
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form .logo img {
+    width: 250px;
+    margin-right: 8px;
+}
+.login-form .logo span {
+    vertical-align: text-bottom;
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline-block;
+    font-weight: 700;
+}
+.ant-spin-container, .ant-spin-nested-loading {
+    height: 100%;
+}
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+/*Info Card */
+
+.infoCard {
+    padding: 32px;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+.infoCard .iconWarp {
+    font-size: 54px;
+    float: left;
+}
+.infoCard .content {
+    width: 100%;
+    padding-left: 78px;
+}
+.infoCard .content .title {
+    line-height: 16px;
+    font-size: 16px;
+    margin-bottom: 8px;
+    height: 16px;
+}
+.infoCard .content .title .text-overflow {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.infoCard .content .number {
+    line-height: 32px;
+    font-size: 24px;
+    height: 32px;
+    margin-bottom: 0;
+}
+.infoCard .content .number .text-overflow {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

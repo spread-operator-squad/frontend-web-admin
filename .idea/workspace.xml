@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="37666d77-3901-452a-86bf-e6ff77c3bcc4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/enigmacamp.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/Breadcumb/Bread.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/TopBar/TopBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Navigation/Navigation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Auth/ForgotPassword/ForgotPassword.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Auth/Login/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Auth/Registration/Registration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Dashboard/components/InfoCard/InfoCard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Dashboard/components/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Dashboard/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/utils/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/CombineReducers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/StoreDetail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/UserDetail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/authenticationService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/Action.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/Exception.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1VqOQ0rbMCLA4kfwl6tcUJEPwbb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.updates" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/Dashboard/components/InfoCard" />
+      <recent name="$PROJECT_DIR$/src/pages/Dashboard/components/" />
+      <recent name="$PROJECT_DIR$/src/pages" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="37666d77-3901-452a-86bf-e6ff77c3bcc4" name="Default Changelist" comment="" />
+      <created>1577977138339</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1577977138339</updated>
+      <workItem from="1577977140225" duration="32783000" />
+      <workItem from="1578042190407" duration="2937000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="693" y="305" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1577998354269">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="693" y="305" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.30.1920.1050@0.30.1920.1050" timestamp="1577998354269" />
+    <state x="182" y="122" width="1536" height="873" key="DiffContextDialog" timestamp="1577977825687">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="182" y="122" width="1536" height="873" key="DiffContextDialog/0.30.1920.1050@0.30.1920.1050" timestamp="1577977825687" />
+    <state width="1878" height="277" key="GridCell.Tab.0.bottom" timestamp="1578042433383">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.0.bottom/0.30.1920.1050@0.30.1920.1050" timestamp="1578042433383" />
+    <state width="1878" height="277" key="GridCell.Tab.0.center" timestamp="1578042433383">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.0.center/0.30.1920.1050@0.30.1920.1050" timestamp="1578042433383" />
+    <state width="1878" height="277" key="GridCell.Tab.0.left" timestamp="1578042433382">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.0.left/0.30.1920.1050@0.30.1920.1050" timestamp="1578042433382" />
+    <state width="1878" height="277" key="GridCell.Tab.0.right" timestamp="1578042433383">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.0.right/0.30.1920.1050@0.30.1920.1050" timestamp="1578042433383" />
+    <state x="712" y="269" width="485" height="575" key="RollbackChangesDialog" timestamp="1577977830314">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="712" y="269" width="485" height="575" key="RollbackChangesDialog/0.30.1920.1050@0.30.1920.1050" timestamp="1577977830314" />
+    <state x="624" y="254" key="run.anything.popup" timestamp="1577995345676">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="624" y="254" key="run.anything.popup/0.30.1920.1050@0.30.1920.1050" timestamp="1577995345676" />
+    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup" timestamp="1578042428588">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup/0.30.1920.1050@0.30.1920.1050" timestamp="1578042428588" />
+  </component>
+</project>
