@@ -1,5 +1,5 @@
 import React from "react";
-import {Menu, Dropdown, Avatar, Icon, Layout, Row, Col} from "antd";
+import {Menu, Dropdown, Avatar, Icon, Layout} from "antd";
 
 const {Header} = Layout;
 
@@ -32,13 +32,11 @@ class TopBar extends React.Component {
     render() {
         return (
             <Header style={{background: '#fff', padding: 0}}>
-                <Row type="flex" justify="end">
                     <Dropdown overlay={this.account} className='hover-able' placement={"bottomLeft"}>
-                        <Col span={2} style={{paddingLeft: '5px'}}>
-                            Hi, Username <Avatar/>
-                        </Col>
+                            <div style={{float: 'right', marginRight: '20px'}}>
+                                Hi, Username <Avatar/>
+                            </div>
                     </Dropdown>
-                </Row>
             </Header>
         );
     }
