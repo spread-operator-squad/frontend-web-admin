@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../../../assets/enigmacamp.jpeg";
 import {Button, DatePicker, message, Radio, Form, Icon, Input} from "antd";
 import {Link} from "react-router-dom";
+import {doRegister} from "../../../services/authenticationService";
 
 function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -150,20 +151,24 @@ class RegistrationForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields( async (err, values) => {
             if (!err) {
                 let birthDate = values['birthDate'].format('YYYY-MM-DD');
                 const registrationForm = {
                     username: values['username'],
                     password: values['password'],
+                    roles: ["ROLE_OWNER"],
                     userDetail: {
                         name: values['name'],
-                        phoneNumber: values['phoneNumber'],
+                        phoneNumber: parseInt(values['phoneNumber']),
                         birthDate: birthDate,
                         gender: values['gender']
                     }
                 };
-                console.log('Received values of form: ', registrationForm);
+                const response = await doRegister(registrationForm);
+                if (response.type === 'error') return message.warning(response.message);
+                this.props.form.resetFields();
+                return message.success('Success registration, your account is under review');
             }
         });
     };

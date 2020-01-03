@@ -8,17 +8,24 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Login from "./pages/Auth/Login/Login";
 import Registration from "./pages/Auth/Registration/Registration";
 import ForgotPassword from "./pages/Auth/ForgotPassword/ForgotPassword";
+import {Provider} from "react-redux";
+import {reducers} from "./reducers/CombineReducers";
+import {createStore} from "redux";
+
+const store = createStore(reducers);
 
 ReactDOM.render(
-    <Router>
-        <Switch>
-            <Route exact path={"/login"}><Login/></Route>
-            <Route path={"/register"}><Registration/></Route>
-            <Route path={"/forgot-password"}><ForgotPassword/></Route>
-            <Route path="/admin" component={App}/>
-            <Route path="/owner" component={App}/>
-        </Switch>
-    </Router>
+    <Provider store={store}>
+        <Router>
+            <Switch>
+                <Route exact path={"/login"} component={Login}/>
+                <Route path={"/register"} component={Registration}/>
+                <Route path={"/forgot-password"} component={ForgotPassword}/>
+                <Route path="/admin" component={App}/>
+                <Route path="/owner" component={App}/>
+            </Switch>
+        </Router>
+    </Provider>
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
