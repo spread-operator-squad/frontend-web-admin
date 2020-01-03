@@ -2,7 +2,7 @@ import React from "react";
 import {Form, Icon, Input, Button, Checkbox, message} from 'antd';
 import Logo from '../../../assets/enigmacamp.jpeg';
 import {Link} from "react-router-dom";
-import {doLogin, getJsonToken, getPathRedirect, isAuthenticated} from "../../../services/authenticationService";
+import {doLogin, getPathRedirect, isAuthenticated} from "../../../services/authenticationService";
 import {CREDENTIAL, hasErrors} from "../../../util/Constants";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";

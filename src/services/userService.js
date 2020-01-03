@@ -13,3 +13,16 @@ export async function getUserById(id) {
         return customMessage(error.name, error.message);
     })
 }
+
+export async function getAllUser() {
+    return await fetch(`/users`, {
+        method: "GET",
+        headers: getAuthHeader()
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(error => {
+            return customMessage(error.name, error.message);
+        })
+}
