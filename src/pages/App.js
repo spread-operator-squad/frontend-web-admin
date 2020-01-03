@@ -10,7 +10,8 @@ import {
 import Bread from "../components/Layout/Breadcumb/Bread";
 import Dashboard from "./Dashboard";
 import Navigation from "../components/Navigation/Navigation";
-import {getJsonToken, getPathRedirect, isAuthenticated} from "../services/authenticationService";
+import {getPathRedirect, isAuthenticated} from "../services/authenticationService";
+import UserContainer from "./User/UserContainer";
 import ServiceContainer from './Services/ServiceContainer';
 import ItemContainer from './Item/ItemContainer';
 import OperatorContainer from './Operator/OperatorContainer';
