@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Divider, Tag, message } from 'antd';
 import { fetchOperator } from '../../services/operatorService';
+import Page from '../../components/Page/Page';
 
 const columns = [
     {
@@ -22,19 +23,20 @@ const columns = [
     },
 ];
 
-class OperatorContainer extends React.Component{
+class OperatorContainer extends React.Component {
     state = {
         data: []
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.fetchAllOperator();
     }
 
-    render(){
-        console.log(this.state)
-        return(
-            <Table columns={columns} dataSource={this.state.data} />
+    render() {
+        return (
+            <Page inner>
+                <Table columns={columns} dataSource={this.state.data} />
+            </Page>
         )
     }
 
@@ -43,7 +45,7 @@ class OperatorContainer extends React.Component{
         const response = await fetchOperator();
         if (response.type === 'error') return message.warning(response.message);
         console.log("GET OPERATOR", response)
-        this.setState({...this.state.data, data: response.operator});
+        this.setState({ ...this.state.data, data: response.operator });
     }
 }
 

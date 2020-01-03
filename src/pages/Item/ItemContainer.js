@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Divider, Tag, message } from 'antd';
 import { fetchItem } from '../../services/itemService';
+import Page from '../../components/Page/Page';
 
 const columns = [
     {
@@ -38,7 +39,9 @@ class ItemContainer extends React.Component {
 
     render() {
         return (
-            <Table columns={columns} dataSource={this.state.data} />
+            <Page inner>
+                <Table columns={columns} dataSource={this.state.data} />                
+            </Page>
         );
     }
 
