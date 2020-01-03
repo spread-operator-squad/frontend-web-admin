@@ -20,6 +20,7 @@ class App extends React.Component {
             message.warning("Please Login !");
             return this.props.history.push(getPathRedirect())
         }
+        return this.props.history.push(getPathRedirect());
     }
 
     state = {
@@ -33,6 +34,7 @@ class App extends React.Component {
     render() {
         const {path, url} = this.props.match;
         const role = path.substr(1);
+
         return (
             <Router>
                 <Layout style={{minHeight: '100vh'}}>
@@ -46,7 +48,7 @@ class App extends React.Component {
                             <Bread url={url} title="Dashboard" icon="dashboard"/>
                             <Switch>
                                 {/*GLOBAL PAGE*/}
-                                <Route exact path={`${path}/dashboard`}><Dashboard/></Route>
+                                <Route path={`${path}/dashboard`}><Dashboard/></Route>
 
                                 {/*ADMIN PAGE*/}
                                 <Route path={`${path}/user`}> Users </Route>
@@ -58,6 +60,7 @@ class App extends React.Component {
                                 <Route path={`${path}/item`}> Item </Route>
                                 <Route path={`${path}/report`}> Report </Route>
                                 <Route path={`${path}/chat`}> Chat </Route>
+                                <Route path={`${path}/*`}>Not Found</Route>
                             </Switch>
                         </Content>
                         <Footer style={{textAlign: 'center'}}>Copyright</Footer>
