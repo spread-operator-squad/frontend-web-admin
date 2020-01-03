@@ -55,7 +55,7 @@ class App extends React.Component {
                                 <Route exact path={`${path}/dashboard`}><Dashboard/></Route>
 
                                 {/*ADMIN PAGE*/}
-                                <Route path={`${path}/user`}> <UserContainer/> </Route>
+                                <Route path={`${path}/user`} component={UserContainer}/>
 
                                 {/*OWNER PAGE*/}
                                 <Route path={`${path}/store`}> Store </Route>

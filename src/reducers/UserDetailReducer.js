@@ -1,15 +1,11 @@
 import {UserDetailAction} from "../util/Action";
 
-const initialState = {
-    username: null,
-    roles: [],
-    userDetail: {}
-};
+const initialState = {};
 
 export function userDetailReducer(state = initialState, action) {
     switch (action.type) {
         case UserDetailAction.SAVE_USER_DETAIL:
-            return {...state, user: action.payload};
+            return state = {...action.payload};
         default:
             return {...state};
     }
