@@ -19,6 +19,22 @@ export async function doLogin(payload) {
         })
 }
 
+export async function doRegister(payload) {
+    return await fetch('/auth/registration',
+        {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload)
+        })
+        .then(handleErrors)
+        .then(response => {
+            return response.json();
+        })
+        .catch(error => {
+            return customMessage(error.name, error.message);
+        })
+}
+
 export function isAuthenticated() {
     return localStorage.getItem(CREDENTIAL) != null;
 }
