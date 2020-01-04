@@ -17,10 +17,11 @@ import ItemContainer from './Item/ItemContainer';
 import OperatorContainer from './Operator/OperatorContainer';
 import ReportContainer from './Report/ReportContainer';
 import {connect} from "react-redux";
-import {UserDetailAction} from "../util/Action";
+import {StoresAction, UserDetailAction} from "../util/Action";
 import {getUserById} from "../services/userService";
-import {getStoreByOwnerId} from "../services/storeService";
+import {getStoreByOwnerId, isSelectedStore, saveSelectedStore} from "../services/storeService";
 import StoreModal from "./Store/StoreModal";
+import SelectStore from "./Store/SelectStore";
 
 const {Content, Footer, Sider} = Layout;
 
@@ -37,17 +38,31 @@ class App extends React.Component {
     preparedSetData = async () => {
         const user = await getUserById(getJsonToken().jti);
         if (user !== undefined) {
-            const store = await getStoreByOwnerId(user.id);
-            if (store.length !== 0) this.setState({...this.state, isHaveStore: true});
+            const stores = await getStoreByOwnerId(user.id);
+            if (stores.length !== 0) this.setState({...this.state, isHaveStore: true});
+            this.props.dispatch({type: StoresAction.FETCH_STORES, payload: stores});
             this.props.dispatch({type: UserDetailAction.SAVE_USER_DETAIL, payload: user})
         }
     };
 
+    setSelectedStore = (store) => {
+        saveSelectedStore(store);
+        message.success(`You selected ${store.name}`);
+    };
+
     validateStore = (user, role) => {
+        const {stores} = this.props;
         if (role === 'owner') {
             if (user.id !== null) {
                 if (!(this.state.isHaveStore)) {
                     return <StoreModal title={'Create a new store'} owner={user} visible={true} cancel={false}/>
+                }
+                if (!(isSelectedStore())) {
+                    if(stores.length > 0) {
+                        return (
+                            <SelectStore stores={stores} onClick={this.setSelectedStore}/>
+                        )
+                    }
                 }
             }
         }
@@ -103,8 +118,11 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    user: {...state.user}
-});
+const mapStateToProps = (state) => {
+    return {
+        user: {...state.user},
+        stores: [...state.stores.stores]
+    }
+};
 
 export default connect(mapStateToProps)(withRouter(App));

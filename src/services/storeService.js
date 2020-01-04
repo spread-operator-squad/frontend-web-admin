@@ -1,5 +1,6 @@
 import {getAuthHeader, getToken} from "./authenticationService";
 import {customMessage, handleErrors} from "../util/Exception";
+import {STORE} from "../util/Constants";
 
 export async function getStoreByOwnerId(id) {
     return await fetch(`/stores/owner?id=${id}`,
@@ -33,4 +34,16 @@ export async function saveStore(payload) {
         .catch(error => {
             return customMessage(error.name, error.message);
         })
+}
+
+export function saveSelectedStore(store) {
+    return localStorage.setItem(STORE, store.id);
+}
+
+export function getSelectedStore() {
+    return localStorage.getItem(STORE);
+}
+
+export function isSelectedStore() {
+    return localStorage.getItem(STORE) != null;
 }

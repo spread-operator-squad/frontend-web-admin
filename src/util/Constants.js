@@ -1,4 +1,5 @@
 export const CREDENTIAL = 'credential';
+export const STORE = 'store';
 
 export function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);

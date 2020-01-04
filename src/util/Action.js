@@ -20,4 +20,8 @@ export const OperatorAction = {
 
 export const ReportAction = {
     FETCH_REPORTS: 'FETCH_REPORTS'
-}
+};
+
+export const StoresAction = {
+    FETCH_STORES: 'FETCH_STORES'
+};
