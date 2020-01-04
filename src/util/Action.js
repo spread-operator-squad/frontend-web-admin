@@ -7,5 +7,9 @@ export const UsersAction = {
 };
 
 export const ItemAction = {
-    FETCH_ITEMS: 'FETCH_ITEMS',
+    FETCH_ITEMS: 'FETCH_ITEMS'
+};
+
+export const ServicesAction = {
+    FETCH_SERVICES: 'FETCH_SERVICES'
 };
