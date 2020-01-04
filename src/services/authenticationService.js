@@ -1,5 +1,5 @@
 import {customMessage, handleErrors} from "../util/Exception";
-import {CREDENTIAL, USER_ROLE} from "../util/Constants";
+import {CREDENTIAL, USER_DETAIL, USER_ROLE} from "../util/Constants";
 
 const jwtDecode = require('jwt-decode');
 
@@ -51,6 +51,10 @@ export function getJsonToken() {
     return jwtDecode(getToken());
 }
 
+export function getUserDetail() {
+    return localStorage.getItem(USER_DETAIL);
+}
+
 function getRoleUser() {
     let roles = [];
     getJsonToken().scopes.map(item => roles.push(item.authority));
@@ -65,6 +69,9 @@ export function getPathRedirect() {
             return '/owner/';
         } else if (USER_ROLE.OPERATOR.role.includes(getRoleUser())) {
             return '/operator/';
+        } else {
+            localStorage.clear();
+            return '/login';
         }
     } else {
         return '/login';
