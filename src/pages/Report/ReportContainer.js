@@ -63,7 +63,6 @@ class ReportContainer extends React.Component {
     fetchAllReport = async () => {
         const response = await fetchReport();
         if (response.type === 'error') return message.warning(response.message);
-        console.log('GET RESPONSE', response)
         this.props.dispatch({type: ReportAction.FETCH_REPORTS, payload: response})
     }
 }
