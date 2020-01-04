@@ -13,3 +13,7 @@ export const ItemAction = {
 export const ServicesAction = {
     FETCH_SERVICES: 'FETCH_SERVICES'
 };
+
+export const OperatorAction = {
+    FETCH_OPERATORS: 'FETCH_OPERATORS'
+};
