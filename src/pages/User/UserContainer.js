@@ -2,7 +2,7 @@ import React from "react";
 import Page from "../../components/Page/Page";
 import {message, Modal, Table, Tabs} from "antd";
 import {connect} from "react-redux";
-import {getAllUserByActiveStatus} from "../../services/userService";
+import {activateUserById, blockUserById, deleteUserById, getAllUserByActiveStatus} from "../../services/userService";
 import {UsersAction} from "../../util/Action";
 import DropOption from "../../components/DropOption/DropOption";
 
@@ -51,21 +51,35 @@ const columns = [
     },
 ];
 
-const handleActionClick = (record, e) => {
+const handleActivateUser = async (id) => {
+    const response = await activateUserById(id);
+    if (response.type === 'error') return message.warning(response.message);
+};
+
+const handleBlockUser = async (id) => {
+    const response = await blockUserById(id);
+    if (response.type === 'error') return message.warning(response.message);
+};
+
+const handleDeleteUser = async (id) => {
+    const response = await deleteUserById(id);
+    if (response.type === 'error') return message.warning(response.message);
+};
+
+const handleActionClick = async (record, e) => {
     switch (e.key) {
         case 'activate':
-
-            console.log('active');
-            break;
+            await handleActivateUser(record.id);
+            return message.success(`Success activate account ${record.username}`);
         case 'block':
-            console.log('block');
-            break;
+            await handleBlockUser(record.id);
+            return message.success(`Success block user ${record.username}`);
         case 'delete':
             confirm({
                 title: `Are you sure delete this record?`,
                 onOk() {
-                    console.log("oke")
-                    // onDeleteItem(record.id)
+                    handleDeleteUser(record.id);
+                    return message.success('Success deleted');
                 },
             });
             break;
@@ -104,7 +118,6 @@ class UserContainer extends React.Component {
     }
 
     fetchAllUser = async (isActive) => {
-        // this.setState(this.setState({...this.setState({...this.state, loading: true})}));
         const response = await getAllUserByActiveStatus(isActive);
         if (response.type === 'error') return message.warning(response.message);
         this.props.dispatch({type: UsersAction.FETCH_USERS, payload: response});
