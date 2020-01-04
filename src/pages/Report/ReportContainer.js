@@ -2,6 +2,8 @@ import React from 'react'
 import { Table, Divider, Tag, message } from 'antd';
 import { fetchReport } from '../../services/reportService';
 import Page from '../../components/Page/Page';
+import { ReportAction } from '../../util/Action';
+import { connect } from 'react-redux';
 
 const columns = [
     {
@@ -40,17 +42,20 @@ const columns = [
 
 class ReportContainer extends React.Component {
     state = {
-        data: []
+        isLoading: true,
+        status: false,
     }
 
     componentDidMount() {
-        this.fetchAllReport();
+        this.fetchAllReport().then(
+            this.setState({isLoading: false, status: true})
+        )
     }
 
     render() {
         return (
             <Page inner>
-                <Table columns={columns} dataSource={this.state.data} />
+                <Table loading={this.state.isLoading} rowKey={record => record.id} columns={columns} dataSource={this.props.reports} />
             </Page>
         )
     }
@@ -58,8 +63,13 @@ class ReportContainer extends React.Component {
     fetchAllReport = async () => {
         const response = await fetchReport();
         if (response.type === 'error') return message.warning(response.message);
-        this.setState({ ...this.state.data, data: response });
+        console.log('GET RESPONSE', response)
+        this.props.dispatch({type: ReportAction.FETCH_REPORTS, payload: response})
     }
 }
 
-export default ReportContainer;
+const mapStateToProps= (state) => ({
+    ...state.reports
+})
+
+export default connect (mapStateToProps)(ReportContainer);
