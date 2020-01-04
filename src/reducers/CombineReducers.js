@@ -4,6 +4,7 @@ import {usersReducer} from "./UsersReducer";
 import {itemReducer} from './ItemReducer';
 import {serviceReducer} from './ServiceReducer';
 import {operatorReducer} from './OperatorReducer';
+import {reportReducer} from './ReportReducer';
 
 export const reducers = combineReducers({
     user: userDetailReducer,
@@ -11,4 +12,5 @@ export const reducers = combineReducers({
     items: itemReducer,
     services: serviceReducer,
     operators: operatorReducer,
+    reports: reportReducer,
 });

@@ -17,3 +17,7 @@ export const ServicesAction = {
 export const OperatorAction = {
     FETCH_OPERATORS: 'FETCH_OPERATORS'
 };
+
+export const ReportAction = {
+    FETCH_REPORTS: 'FETCH_REPORTS'
+}
