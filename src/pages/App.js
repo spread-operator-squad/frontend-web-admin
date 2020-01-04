@@ -19,6 +19,8 @@ import ReportContainer from './Report/ReportContainer';
 import {connect} from "react-redux";
 import {UserDetailAction} from "../util/Action";
 import {getUserById} from "../services/userService";
+import {getStoreByOwnerId} from "../services/storeService";
+import StoreModal from "./Store/StoreModal";
 
 const {Content, Footer, Sider} = Layout;
 
@@ -28,16 +30,32 @@ class App extends React.Component {
             message.warning("Please Login !");
             return this.props.history.push(getPathRedirect())
         }
-        this.setUserDetail();
+        this.preparedSetData();
         return this.props.history.push(getPathRedirect().concat("dashboard"));
     }
 
-    setUserDetail = async () => {
-        this.props.dispatch({type: UserDetailAction.SAVE_USER_DETAIL, payload: await getUserById(getJsonToken().jti)});
+    preparedSetData = async () => {
+        const user = await getUserById(getJsonToken().jti);
+        if (user !== undefined) {
+            const store = await getStoreByOwnerId(user.id);
+            if (store.length !== 0) this.setState({...this.state, isHaveStore: true});
+            this.props.dispatch({type: UserDetailAction.SAVE_USER_DETAIL, payload: user})
+        }
+    };
+
+    validateStore = (user, role) => {
+        if (role === 'owner') {
+            if (user.id !== null) {
+                if (!(this.state.isHaveStore)) {
+                    return <StoreModal title={'Create a new store'} owner={user} visible={true} cancel={false}/>
+                }
+            }
+        }
     };
 
     state = {
         collapsed: false,
+        isHaveStore: false
     };
 
     onCollapse = collapsed => {
@@ -47,15 +65,17 @@ class App extends React.Component {
     render() {
         const {path, url} = this.props.match;
         const role = path.substr(1);
+        const {user} = this.props;
         return (
             <Router>
+                {this.validateStore(user, role)}
                 <Layout style={{minHeight: '100vh'}}>
                     <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                         <div className="logo"/>
                         <Navigation role={role}/>
                     </Sider>
                     <Layout>
-                        <TopBar name={this.props.user.userDetail.name} history={this.props.history}/>
+                        <TopBar name={user.userDetail.name} history={this.props.history}/>
                         <Content style={{margin: '0 16px'}}>
                             <Bread url={url} title="Dashboard" icon="dashboard"/>
                             <Switch>

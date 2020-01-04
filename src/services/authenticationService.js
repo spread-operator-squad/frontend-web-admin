@@ -36,15 +36,19 @@ export async function doRegister(payload) {
 }
 
 export function isAuthenticated() {
-    return localStorage.getItem(CREDENTIAL) != null;
+    return getToken() != null;
 }
 
 export function getAuthHeader() {
-    return {Authorization: 'Bearer ' + localStorage.getItem(CREDENTIAL)}
+    return {Authorization: 'Bearer ' + getToken()}
+}
+
+export function getToken() {
+    return localStorage.getItem(CREDENTIAL);
 }
 
 export function getJsonToken() {
-    return jwtDecode(localStorage.getItem(CREDENTIAL));
+    return jwtDecode(getToken());
 }
 
 function getRoleUser() {
