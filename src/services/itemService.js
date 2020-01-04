@@ -15,3 +15,16 @@ export async function fetchItem() {
             return customMessage(error.name, error.message);
         })
 }
+
+export async function deleteItemById(id) {
+    return await fetch(`/items/${id}`, {
+        method: "DELETE",
+        headers: getAuthHeader()
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(error => {
+        return customMessage(error.name, error.message);
+    })
+}

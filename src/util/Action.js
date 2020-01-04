@@ -5,3 +5,7 @@ export const UserDetailAction = {
 export const UsersAction = {
     FETCH_USERS: 'FETCH_USERS'
 };
+
+export const ItemAction = {
+    FETCH_ITEMS: 'FETCH_ITEMS',
+};
