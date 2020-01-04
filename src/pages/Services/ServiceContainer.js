@@ -2,6 +2,8 @@ import React from 'react';
 import { Table, Divider, Tag, message } from 'antd';
 import { fetchService } from '../../services/servicesService';
 import Page from '../../components/Page/Page';
+import { ServicesAction } from '../../util/Action';
+import { connect } from 'react-redux';
 
 const columns = [
     {
@@ -30,17 +32,20 @@ const columns = [
 
 class ServiceContainer extends React.Component {
     state = {
-        data: []
+        isLoading: true,
+        status: false
     }
 
     componentDidMount() {
-        this.fetchAllService();
+        this.fetchAllService().then(
+            this.setState({status: true, isLoading: false})
+        )
     }
 
     render() {
         return (
             <Page inner>
-                <Table columns={columns} dataSource={this.state.data} />
+                <Table loading={this.state.isLoading} rowKey={record => record.id} columns={columns} dataSource={this.props.services} />
             </Page>
         )
     }
@@ -48,8 +53,12 @@ class ServiceContainer extends React.Component {
     fetchAllService = async () => {
         const response = await fetchService();
         if (response.type === 'error') return message.warning(response.message);
-        this.setState({ ...this.state.data, data: response });
+        this.props.dispatch({ type: ServicesAction.FETCH_SERVICES, payload: response});
     }
 }
 
-export default ServiceContainer;
+const mapStateToProps = (state) => ({
+    ...state.services
+})
+
+export default connect (mapStateToProps)(ServiceContainer);

@@ -14,7 +14,6 @@ const { confirm } = Modal;
 //                 { key: 'edit', name: 'Edit'},
 //                 { key: 'delete', name: 'Delete',}
 //             ]}
-    
 // }
 
 const columns = [

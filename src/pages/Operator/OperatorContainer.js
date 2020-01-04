@@ -2,6 +2,8 @@ import React from 'react'
 import { Table, Divider, Tag, message } from 'antd';
 import { fetchOperator } from '../../services/operatorService';
 import Page from '../../components/Page/Page';
+import { OperatorAction } from '../../util/Action';
+import { connect } from 'react-redux';
 
 const columns = [
     {
@@ -25,28 +27,33 @@ const columns = [
 
 class OperatorContainer extends React.Component {
     state = {
-        data: []
+        isLoading: true,
+        status: false
     }
 
     componentDidMount() {
-        this.fetchAllOperator();
+        this.fetchAllOperator().then(
+            this.setState({isLoading: false, status: true})
+        )
     }
 
     render() {
         return (
             <Page inner>
-                <Table columns={columns} dataSource={this.state.data} />
+                <Table loading={this.state.isLoading} rowKey={record => record.id} columns={columns} dataSource={this.props.operators.operator} />
             </Page>
         )
     }
 
-
     fetchAllOperator = async () => {
         const response = await fetchOperator();
         if (response.type === 'error') return message.warning(response.message);
-        console.log("GET OPERATOR", response)
-        this.setState({ ...this.state.data, data: response.operator });
+        this.props.dispatch({type: OperatorAction.FETCH_OPERATORS, payload: response});
     }
 }
 
-export default OperatorContainer
+const mapStateToProps = (state) => ({
+    ...state.operators
+})
+
+export default connect (mapStateToProps)(OperatorContainer)
