@@ -1,8 +1,4 @@
 export const Constant = {
-    ApiPrefix: '/',
-    NotFound: {
-        message: 'Not Found',
-    },
     Color: {
         green: '#64ea91',
         blue: '#8fc9fb',
@@ -36,29 +32,24 @@ export const Constant = {
             },
             {
                 key: 'service',
-                icon: 'pie-chart',
+                icon: 'skin',
                 title: 'Service'
             },
             {
                 key: 'item',
-                icon: 'pie-chart',
+                icon: 'shopping',
                 title: 'Item'
             },
             {
                 key: 'operator',
-                icon: 'pie-chart',
+                icon: 'team',
                 title: 'Operator'
             },
             {
                 key: 'report',
-                icon: 'pie-chart',
+                icon: 'container',
                 title: 'Report'
-            },
-            {
-                key: 'chat',
-                icon: 'pie-chart',
-                title: 'Chat'
-            },
+            }
         ]
     }
 };
