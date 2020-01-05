@@ -20,6 +20,8 @@ const columns = [
                 <a>Edit</a>
                 <Divider type="vertical" />
                 <a>Delete</a>
+                <Divider type="vertical" />
+                <a>Show Barcode</a>
             </span>
         ),
     },
