@@ -1,6 +1,7 @@
 import {customMessage, handleErrors} from "../util/Exception";
 import {getAuthHeader, getToken} from "./authenticationService";
 import {getSelectedStore} from "./storeService";
+import {isEmpty} from 'lodash';
 
 export async function fetchService() {
     return await fetch(`/services/store?id=${getSelectedStore()}`,
@@ -20,7 +21,7 @@ export async function fetchService() {
 export async function saveService(payload) {
     return await fetch('/services',
         {
-            method: payload.id === undefined ? "POST" : "PUT",
+            method: isEmpty(payload.id) ? "POST" : "PUT",
             headers: new Headers ({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${getToken()}`

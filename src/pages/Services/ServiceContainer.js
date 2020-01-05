@@ -13,7 +13,6 @@ class ServiceContainer extends React.Component {
     state = {
         isLoading: true,
         isShowModal: false,
-        service: {}
     };
 
     componentDidMount() {
@@ -23,8 +22,12 @@ class ServiceContainer extends React.Component {
         )
     }
 
+    deleteService = (id) => {
+
+    };
+
     render() {
-        const {isShowModal, service} = this.state;
+        const {isShowModal} = this.state;
 
         const columns = [
             {
@@ -42,7 +45,7 @@ class ServiceContainer extends React.Component {
                 key: 'action',
                 render: (text, record) => (
                     <DropOption
-                        onMenuClick={e => handleActionClick(record, e)}
+                        onMenuClick={e => handleActionClick(record, e, this.fetchAllService)}
                         menuOptions={[
                             { key: 'update', name: `Update`},
                             { key: 'delete', name: `Delete`},
@@ -52,17 +55,19 @@ class ServiceContainer extends React.Component {
             },
         ];
 
-        const handleActionClick = async (record, e) => {
+        const handleActionClick = async (record, e, fetchAll) => {
             switch (e.key) {
                 case 'update':
-                    return this.showModal(record);
+                    this.props.dispatch({type: ServicesAction.SAVE_SERVICES_FORM, payload: record});
+                    return this.showModal();
                 case 'delete':
                     confirm({
                         title: `Are you sure delete this record?`,
                         onOk() {
-                            return deleteServiceById(record.id).then(
-                                message.success('Success deleted data')
-                            );
+                            return deleteServiceById(record.id).then(() => {
+                                message.success('Success deleted data');
+                                return fetchAll();
+                            });
                         },
                     });
                     break;
@@ -72,9 +77,9 @@ class ServiceContainer extends React.Component {
 
         return (
             <Page inner>
-                <ServiceModal title={"Create a new service"} service={service} visible={isShowModal} handleCancel={this.closeModal}/>
+                <ServiceModal visible={isShowModal} fetchAll={this.fetchAllService} handleCancel={this.closeModal}/>
                 <Row type="flex" justify="end" style={{marginBottom: '20px'}}>
-                    <Button type={"primary"} icon="plus" onClick={this.showModal}>Add Service</Button>
+                    <Button type={"primary"} icon="plus" onClick={() => {this.showModal()}}>Add Service</Button>
                 </Row>
                 <Table loading={this.state.isLoading} rowKey={record => record.id} columns={columns}
                        dataSource={this.props.services}/>
@@ -82,11 +87,12 @@ class ServiceContainer extends React.Component {
         )
     }
 
-    showModal = (payload) => {
-        return this.setState({...this.state, isShowModal: true, service: payload});
+    showModal = () => {
+        return this.setState({...this.state, isShowModal: true});
     };
 
     closeModal = () => {
+        this.props.dispatch({type: ServicesAction.CLEAR_FORM});
         return this.setState({...this.state, isShowModal: false})
     };
 
