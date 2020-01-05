@@ -1,5 +1,5 @@
 import {customMessage, handleErrors} from "../util/Exception";
-import { getAuthHeader } from "./authenticationService";
+import { getAuthHeader, getToken } from "./authenticationService";
 import {getSelectedStore} from "./storeService";
 
 export async function fetchItem() {
@@ -17,15 +17,36 @@ export async function fetchItem() {
         })
 }
 
+export async function saveItem(payload) {
+    return await fetch('/items',
+        {
+            method: payload.id === undefined ? "POST" : "PUT",
+            headers: new Headers ({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+            }),
+            body: JSON.stringify(payload)
+        })
+        .then(handleErrors)
+        .then(response => {
+            return response.json();
+        })
+        .catch(error => {
+            return customMessage(error.name, error.message);
+        })
+}
+
 export async function deleteItemById(id) {
-    return await fetch(`/items/${id}`, {
-        method: "DELETE",
-        headers: getAuthHeader()
-    })
-    .then(response => {
-        return response.json();
-    })
-    .catch(error => {
-        return customMessage(error.name, error.message);
-    })
+    return await fetch(`/items/${id}`,
+        {
+            method: "DELETE",
+            headers: getAuthHeader()
+        })
+        .then(handleErrors)
+        .then(response => {
+            return response.json();
+        })
+        .catch(error => {
+            return customMessage(error.name, error.message);
+        })
 }
