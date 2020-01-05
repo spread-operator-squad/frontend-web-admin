@@ -3,6 +3,8 @@ import Logo from "../../../assets/enigmacamp.jpeg";
 import {Button, DatePicker, message, Radio, Form, Icon, Input} from "antd";
 import {Link} from "react-router-dom";
 import {doRegister} from "../../../services/authenticationService";
+import loadReCaptcha from "react-recaptcha-google/src/loadReCaptcha";
+import {ReCaptcha} from "react-recaptcha-google";
 
 function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -17,6 +19,7 @@ class RegistrationForm extends React.Component {
 
     componentDidMount() {
         // To disable submit button at the beginning.
+        loadReCaptcha();
         this.props.form.validateFields();
     }
 
@@ -33,7 +36,7 @@ class RegistrationForm extends React.Component {
         const genderError = isFieldTouched('gender') && getFieldError('gender');
 
         return (
-            <div className='login-form' style={{width: '450px', height: '700px', left: '45%', top: '30%'}}>
+            <div className='login-form' style={{width: '450px', height: '800px', left: '45%', top: '23%'}}>
                 <div className='logo'>
                     <img alt='Logo' src={Logo}/>
                 </div>
@@ -104,6 +107,16 @@ class RegistrationForm extends React.Component {
                             </Radio.Group>,
                         )}
                     </Form.Item>
+                    <Form.Item>
+                        <ReCaptcha
+                            ref={(el) => {this.reCaptcha = el;}}
+                            size="normal"
+                            data-theme="dark"
+                            render="explicit"
+                            sitekey="6Lfa6MgUAAAAAAI9FGhrXSQtFKHJBGePv9rdqP3U"
+                            onloadCallback={this.onLoadRecaptcha}
+                        />
+                    </Form.Item>
 
                     <Form.Item>
                         <Button type="primary" htmlType="submit" disabled={hasErrors(getFieldsError())}>
@@ -117,14 +130,10 @@ class RegistrationForm extends React.Component {
         );
     }
 
-    next() {
-        const current = this.state.current + 1;
-        this.setState({ current });
-    }
-
-    prev() {
-        const current = this.state.current - 1;
-        this.setState({ current });
+    onLoadRecaptcha() {
+        if (this.captchaDemo) {
+            this.captchaDemo.reset();
+        }
     }
 
     handleConfirmBlur = e => {
