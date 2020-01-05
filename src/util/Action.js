@@ -7,7 +7,9 @@ export const ItemAction = {
 };
 
 export const ServicesAction = {
-    FETCH_SERVICES: 'FETCH_SERVICES'
+    FETCH_SERVICES: 'FETCH_SERVICES',
+    SAVE_SERVICES_FORM: 'SAVE_SERVICES_FORM',
+    CLEAR_FORM: 'CLEAR_FORM'
 };
 
 export const OperatorAction = {

@@ -1,44 +1,37 @@
 import React from "react";
-import {getSelectedStore} from "../../services/storeService";
 import {message, Modal} from "antd";
-import {ServiceModalForm} from "./ServiceModalForm";
 import {saveService} from "../../services/servicesService";
+import {isEmpty} from 'lodash'
+import {getSelectedStore} from "../../services/storeService";
+import {connect} from "react-redux";
+import {ServiceModalForm} from "./ServiceModalForm";
 
 class ServiceModal extends React.Component {
-    state = {
-        title: this.props.title,
-        closable: this.props.closeable,
-        fields: {
-            name: '',
-            price: '',
-            storeId: getSelectedStore(),
-        }
-    };
-
-    handleFormChange = (changedFields) => {
-        this.setState(({fields}) => ({
-            fields: {...fields, ...changedFields},
-        }))
-    };
-
     handleCreate = () => {
         const { form } = this.formRef.props;
-        const {id, name, price, storeId} = this.state.fields;
-        form.validateFields( async (err) => {
+        form.validateFields( async (err, value) => {
             if (!err) {
                 const service = {
-                    id: id,
-                    name: name.value,
-                    price: price.value,
-                    storeId: storeId,
+                    id: value.id,
+                    name: value.name,
+                    price: value.price,
+                    storeId: getSelectedStore(),
                 };
                 const response = await saveService(service);
                 if (response.type === 'error') return message.warning(response.message);
                 form.resetFields();
-                message.success('Success created store');
-                return this.props.handleCancel()
+                message.success('Success saved store');
+                this.props.handleCancel();
+                return this.props.fetchAll();
             }
         });
+    };
+
+    handleCancel = () => {
+        const { form } = this.formRef.props;
+        const {handleCancel} = this.props;
+        form.resetFields();
+        return handleCancel()
     };
 
     saveFormRef = formRef => {
@@ -46,20 +39,18 @@ class ServiceModal extends React.Component {
     };
 
     render() {
-        const {visible, handleCancel} = this.props;
-        const {title, fields} = this.state;
-        console.log(fields)
+        const {visible, service} = this.props;
         return (
             <Modal
                 visible={visible}
                 closable={false}
-                title={title}
-                onCancel={handleCancel}
-                okText={'Create'}
+                title={isEmpty(service) ? 'Create a new service' : 'Update selected service'}
+                onCancel={this.handleCancel}
+                okText={'Save'}
                 onOk={this.handleCreate}
             >
                 <ServiceModalForm
-                    {...fields}
+                    {...service}
                     wrappedComponentRef={this.saveFormRef}
                     onChange={this.handleFormChange}
                 />
@@ -68,4 +59,8 @@ class ServiceModal extends React.Component {
     }
 }
 
-export default ServiceModal;
+const mapStateToProps = (state) => ({
+    service : {...state.services.serviceForm}
+});
+
+export default connect(mapStateToProps)(ServiceModal);
