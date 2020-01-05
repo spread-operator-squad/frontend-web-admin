@@ -23,6 +23,7 @@ class SelectStore extends React.Component {
                 footer={null}
                 width={'auto'}
             >
+                <h1 align={'center'}>Select Store</h1>
                 <Row type="flex" style={{alignItems: 'center', justifyContent: 'center'}}>
                     {
                         this.props.stores.map(element => {
