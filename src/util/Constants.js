@@ -1,4 +1,6 @@
 export const CREDENTIAL = 'credential';
+export const STORE = 'store';
+export const USER_DETAIL = 'user';
 
 export function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);

@@ -1,8 +1,9 @@
 import {customMessage, handleErrors} from "../util/Exception";
 import { getAuthHeader } from "./authenticationService";
+import {getSelectedStore} from "./storeService";
 
 export async function fetchOperator() {
-    return await fetch('/stores/13',
+    return await fetch(`/stores/${getSelectedStore()}`,
         {
             method: "GET",
             headers: getAuthHeader()

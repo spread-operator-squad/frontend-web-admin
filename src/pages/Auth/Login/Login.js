@@ -2,10 +2,10 @@ import React from "react";
 import {Form, Icon, Input, Button, Checkbox, message} from 'antd';
 import Logo from '../../../assets/enigmacamp.jpeg';
 import {Link} from "react-router-dom";
-import {doLogin, getPathRedirect, isAuthenticated} from "../../../services/authenticationService";
-import {CREDENTIAL, hasErrors} from "../../../util/Constants";
+import {doLogin, getJsonToken, getPathRedirect, isAuthenticated} from "../../../services/authenticationService";
+import {CREDENTIAL, hasErrors, USER_DETAIL} from "../../../util/Constants";
 import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
+import {getUserById} from "../../../services/userService";
 
 class LoginForm extends React.Component {
     componentDidMount() {
@@ -80,9 +80,9 @@ class LoginForm extends React.Component {
                 const response = await doLogin(loginForm);
                 if (response.type === 'error') return message.warning(response.message);
                 localStorage.setItem(CREDENTIAL, response.token);
-                return (
-                    this.props.history.push(getPathRedirect())
-                )
+                const user = await getUserById(getJsonToken().jti);
+                localStorage.setItem(USER_DETAIL, user.id);
+                return this.props.history.push(getPathRedirect());
             }
         });
     };
@@ -90,8 +90,4 @@ class LoginForm extends React.Component {
 
 const Login = Form.create({name: 'login'})(LoginForm);
 
-const mapStateToProps = (state) => ({
-    userDetail: {...state.userDetail}
-});
-
-export default connect(mapStateToProps)(withRouter(Login));
+export default withRouter(Login);
