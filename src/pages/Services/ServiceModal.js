@@ -9,7 +9,6 @@ class ServiceModal extends React.Component {
         title: this.props.title,
         closable: this.props.closeable,
         fields: {
-            id: '',
             name: '',
             price: '',
             storeId: getSelectedStore(),
