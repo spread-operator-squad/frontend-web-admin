@@ -1,16 +1,17 @@
 import React from 'react'
-import { Table, Divider, Tag, message } from 'antd';
+import { Table, Divider, message } from 'antd';
 import { fetchReport } from '../../services/reportService';
 import Page from '../../components/Page/Page';
 import { ReportAction } from '../../util/Action';
 import { connect } from 'react-redux';
+import {Link} from "react-router-dom";
 
 const columns = [
     {
         title: 'Customer Name',
         dataIndex: 'customerName',
         key: 'customerName',
-        render: text => <a>{text}</a>,
+        render: text => <Link to={"#"}>{text}</Link>,
     },
     {
         title: 'Put Date',
@@ -32,9 +33,9 @@ const columns = [
         key: 'action',
         render: (text, record) => (
             <span>
-                <a>Edit</a>
+                <Link to={"#"}>Edit</Link>
                 <Divider type="vertical" />
-                <a>Delete</a>
+                <Link to={"#"}>Delete</Link>
             </span>
         ),
     },
@@ -44,7 +45,7 @@ class ReportContainer extends React.Component {
     state = {
         isLoading: true,
         status: false,
-    }
+    };
 
     componentDidMount() {
         this.fetchAllReport().then(

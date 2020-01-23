@@ -11,6 +11,7 @@ import ForgotPassword from "./pages/Auth/ForgotPassword/ForgotPassword";
 import {Provider} from "react-redux";
 import {reducers} from "./reducers/CombineReducers";
 import {createStore} from "redux";
+import {Redirect} from "react-router";
 
 const store = createStore(reducers);
 
@@ -18,6 +19,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router>
             <Switch>
+                <Redirect exact from="/" to="/login" />
                 <Route exact path={"/login"} component={Login}/>
                 <Route path={"/register"} component={Registration}/>
                 <Route path={"/forgot-password"} component={ForgotPassword}/>
